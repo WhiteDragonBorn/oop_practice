@@ -63,6 +63,33 @@ class ko {
   ko(int _a, int _b) : a(_a), b(_b) {}
 };
 
+class pairptr {
+  int* a;
+  int* b;
+
+ public:
+  pairptr() : a(new int(0)), b(new int(0)) {}
+  pairptr(int _a, int _b) : a(new int(_a)), b(new int(_b)) {}
+  ~pairptr() {
+    delete a;
+    delete b;
+  }
+
+  // pair sum(pair obj) {
+  //   pair result;
+  //   result.a = a + obj.a;
+  //   result.b = b + obj.b;
+  //   return result;
+  // }
+
+  // pair sum(pair obj) {
+  //   pair result(a + obj.a, b + obj.b);
+  //   return result;
+  // }
+
+  // pair sum(pair obj) { return (pair(a + obj.a, b + obj.b)); }
+};
+
 int main() {
   pair X(3, 5), Y(2, 1), Z;
   pair* x = new pair(3, 5);
