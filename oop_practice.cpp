@@ -65,5 +65,7 @@ class ko {
 
 int main() {
   pair X(3, 5), Y(2, 1), Z;
+  pair* x = new pair(3, 5);
+  x->sum(Y);
   Z = X.sum(Y);
 }
