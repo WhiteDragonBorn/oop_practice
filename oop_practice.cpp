@@ -19,17 +19,17 @@ class pair {
   // int a = 5 --- копирущая инициализация
   // int a(5)  --- прямая инициализация --- быстрее предыдущей
 
-  pair sum(pair obj) {
-    pair result;
-    result.a = a + obj.a;
-    result.b = b + obj.b;
-    return result;
-  }
+  // pair sum(pair obj) {
+  //   pair result;
+  //   result.a = a + obj.a;
+  //   result.b = b + obj.b;
+  //   return result;
+  // }
 
-  pair sum(pair obj) {
-    pair result(a + obj.a, b + obj.b);
-    return result;
-  }
+  // pair sum(pair obj) {
+  //   pair result(a + obj.a, b + obj.b);
+  //   return result;
+  // }
 
   pair sum(pair obj) { return (pair(a + obj.a, b + obj.b)); }
 };
@@ -90,9 +90,77 @@ class pairptr {
   // pair sum(pair obj) { return (pair(a + obj.a, b + obj.b)); }
 };
 
+//--------------------- 2 лекция
+
+// class Pair {
+//   int a, b;
+//
+//  public:
+//   Pair(int a_ = 0, int b_ = 0) : a(a_), b(b_) {}
+//
+//   friend std::ostream& operator<<(std::ostream& out, const Pair& obj) {
+//     out << "a = " << obj.a << " b = " << obj.b;
+//     return out;
+//   }
+// };
+
+class Pair {
+  int *a, b;
+
+ public:
+  Pair(int a_ = 0, int b_ = 0) : a(new int(a_)), b(b_) {
+    std::cout << "Конструктор.";
+    print();
+  }
+
+  //Pair(const Pair& obj) {
+  //  a = new int(*obj.a);
+  //  b = obj.b;
+  //}
+
+  ~Pair() {
+    std::cout << "Деструктор.";
+    print();
+    delete a;
+    a = nullptr;
+  }
+
+  void print() {
+    std::cout << std::endl << "a = " << *a << " b = " << b << std::endl;
+  }
+
+  /*friend std::ostream& operator<<(std::ostream& out, const Pair& obj) {
+    out << "a = " << obj.a << " b = " << obj.b;
+    return out;
+  }*/
+};
+
+Pair f() {
+
+  std::cout << "f()" << std::endl;
+  Pair y(6, 2);
+
+  return y;
+}
+
+// Композиция классов
+
+
 int main() {
-  pair X(3, 5), Y(2, 1), Z;
-  pair* x = new pair(3, 5);
-  x->sum(Y);
-  Z = X.sum(Y);
+  setlocale(LC_ALL, "Russian");
+  // pair X(3, 5), Y(2, 1), Z;
+  // pair* x = new pair(3, 5);
+  // x->sum(Y);
+  // Z = X.sum(Y);
+
+  //--------------------- 2 лекция
+
+  /*Pair x(3, 2);
+  Pair y(4, 3);
+  std::cout << x << y;*/
+
+  Pair x(3, 5);
+  std::cout << "-------\n";
+  f();
+  std::cout << "-------\n";
 }
